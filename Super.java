@@ -25,7 +25,7 @@ public class Super {
         a1.a = 5;
         System.out.println(b.a);
 
-    }   
+    }
 }
 
 
