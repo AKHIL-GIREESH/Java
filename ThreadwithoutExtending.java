@@ -1,6 +1,3 @@
-import java.io.*;
-
-
 class A{
     void methodfr(){
 
