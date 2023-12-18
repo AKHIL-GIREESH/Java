@@ -1,20 +1,68 @@
 import java.io.*;
 
 class ODD extends Thread{
-    public void run(FileOutputStream fout,int temp){
+    FileInputStream fin = null;
+    FileOutputStream fout =null;
+    int temp,temp1;
+    char c;
+
+    ODD(FileOutputStream o,FileInputStream i){
+        fin = i;
+        fout = o;
+    }
+    public void run(){
         try{
-            fout.write(temp);
-        }catch(Exception e){
+            temp = fin.read();
+            while(temp!=-1){
+            c = (char)temp;
+
+            if(!(c == ' ')){
+                temp1 = Integer.parseInt(c+"");
+                System.out.println(temp1%2);
+
+                if(temp1%2 == 1){
+                    System.out.println("Odd");
+                    fout.write(temp);
+                }
+            }
+            temp = fin.read();
+
+        }}catch(Exception e){
             System.out.println(e);
         }
     }
 }
 
 class EVEN extends Thread{
-    public void run(FileOutputStream fout,int temp){
+    FileInputStream fin = null;
+    FileOutputStream fout =null;
+    int temp,temp1;
+    char c;
+
+    EVEN(FileOutputStream o,FileInputStream i){
+        fin = i;
+        fout = o;
+    }
+
+    public void run(){
         try{
-            fout.write(temp);
-        }catch(Exception e){
+            temp = fin.read();
+            while(temp!=-1){
+            c = (char)temp;
+
+            if(!(c == ' ')){
+                temp1 = Integer.parseInt(c+"");
+                System.out.println(temp1%2);
+
+                if(temp1%2 == 0){
+                    System.out.println("Even");
+                    fout.write(temp);
+
+                }
+            }
+            temp = fin.read();
+
+        }}catch(Exception e){
             System.out.println(e);
         }
     }
@@ -23,8 +71,8 @@ class EVEN extends Thread{
 public class FileOperations {
     public static void main(String[] args) {
 
-        int temp,temp1;
-        char c;
+        // int temp,temp1;
+        // char c;
         FileInputStream fin = null;
         FileOutputStream fout1 = null,fout2 = null;
 
@@ -37,36 +85,42 @@ public class FileOperations {
             System.out.println(e);
         }
 
-        try{
-            temp = fin.read();
-            while(temp!=-1){
-            c = (char)temp;
+        ODD o = new ODD(fout2,fin);
+        o.start();
 
-            if(!(c == ' ')){
-                temp1 = Integer.parseInt(c+"");
-                System.out.println(temp1%2);
+        EVEN e = new EVEN(fout1,fin);
+        e.start();
 
-                if(temp1%2 == 1){
-                    System.out.println("Odd");
-                    fout2.write(temp);
+        // try{
+        //     temp = fin.read();
+        //     while(temp!=-1){
+        //     c = (char)temp;
 
-                }else{
-                    System.out.println("Even");
-                    fout1.write(temp);
-                }
-            }
-            temp = fin.read();
+        //     if(!(c == ' ')){
+        //         temp1 = Integer.parseInt(c+"");
+        //         System.out.println(temp1%2);
 
-        }}catch(Exception e){
-            System.out.println(e);
-        }
+        //         if(temp1%2 == 1){
+        //             System.out.println("Odd");
+        //             fout2.write(temp);
 
-        try{
-                fin.close();
-                fout1.close();
-                fout2.close();
-        }catch(Exception e){
-            System.out.println(e);
-        }
+        //         }else{
+        //             System.out.println("Even");
+        //             fout1.write(temp);
+        //         }
+        //     }
+        //     temp = fin.read();
+
+        // }}catch(Exception e){
+        //     System.out.println(e);
+        // }
+
+        // try{
+        //         fin.close();
+        //         fout1.close();
+        //         fout2.close();
+        // }catch(Exception ex){
+        //     System.out.println(ex);
+        // }
     }
 }
