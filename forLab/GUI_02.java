@@ -6,7 +6,7 @@ class CalGUIlator implements ActionListener{
     JFrame jf;
     JTextField jt1,jt2;
     JButton jbA,jbS,jbM,jbD,jbR;
-    JLabel jl;
+    JLabel jl,jl2;
 
     CalGUIlator(){
         jf = new JFrame("Calculator");
@@ -32,7 +32,10 @@ class CalGUIlator implements ActionListener{
         jf.add(jbD);
         jf.add(jbR);
 
+        jl2 = new JLabel("<html><body><br></body></html>");
         jl = new JLabel("Result = ");
+        
+        jf.add(jl2);
         jf.add(jl);
 
         jf.setSize(500,500);
