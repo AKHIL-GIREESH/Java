@@ -43,6 +43,11 @@ class TrafficL implements ActionListener{
 
     public void actionPerformed(ActionEvent e){
             String s = e.getActionCommand();
+
+            rr.setForeground(Color.RED);
+            ry.setForeground(Color.YELLOW);
+            rg.setForeground(Color.GREEN);
+
             if(rr.isSelected()){
                 jl.setText("RED");
                 rr.setBackground(Color.RED);
