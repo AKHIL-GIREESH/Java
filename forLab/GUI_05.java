@@ -14,10 +14,6 @@ class ThreadGUI extends Thread implements ActionListener{
         this.num = num;
     }
 
-    void ThreadGUIMain(ThreadGUI tg){
-        tmain = tg;
-    }
-
     void ThreadpartOfGUI(){
         jf = new JFrame();
         jf1 = new JTextField(20);
@@ -86,7 +82,6 @@ class ThreadGUI extends Thread implements ActionListener{
 public class GUI_05 {
     public static void main(String[] args) {
         ThreadGUI tg = new ThreadGUI(10);
-        tg.ThreadGUIMain(tg);
         tg.ThreadpartOfGUI();
     }
 }
